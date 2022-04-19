@@ -1,7 +1,7 @@
 Feature: Cucumber
 
   Scenario: A normal account
-    Given I have written my username "Carre1234"
+    Given I have written my username "Carre33422"
     Given I have written my email "fenisik483@karavic.com"
     Given I have written my password "Funkar1_"
     When I click the Sign Up button
@@ -12,18 +12,18 @@ Feature: Cucumber
     Given I have written my email "fuydimekna@vusra.com"
     Given I have written my password "Funkar1_1"
     When I click the Sign Up button
-    Then I am shown a error
+    Then I am shown username to long
 
   Scenario: Username already in use
     Given I have written my username "Jacob"
     Given I have written my email "fuydimekna@vusra.com"
     Given I have written my password "Funkar1_1"
     When I click the Sign Up button
-    Then I am shown a error
+    Then I am shown that username is in use
 
   Scenario: Email missing for the creation of the account
     Given I have written my username "Jacob15151222"
     Given I have written my email ""
     Given I have written my password "Funkar1_1"
     When I click the Sign Up button
-    Then I am shown a error
+    Then I am shown email is required

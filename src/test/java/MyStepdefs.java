@@ -47,25 +47,44 @@ public class MyStepdefs {
 
     @Then("my account is made")
     public void myAccountIsMade() {
-        String expected = "Check your email\n" +
-                "We’ve sent a message to fenisik483@karavic.com with a link to activate your account.\n" +
-                "Didn’t get an email?\n" +
-                "If you don’t see an email from us within a few minutes, a few things could have happened:\n" +
-                "The email is in your spam folder. (Sometimes things get lost in there.)\n" +
-                "The email address you entered had a mistake or typo. (Happens to the best of us.)\n" +
-                "You accidentally gave us another email address. (Usually a work or personal one instead of the one you meant.)\n" +
-                "We can’t deliver the email to this address. (Usually because of corporate firewalls or filtering.)\n" +
-                "Re-enter your email and try again";
+        String expected = """
+                Check your email
+                We’ve sent a message to fenisik483@karavic.com with a link to activate your account.
+                Didn’t get an email?
+                If you don’t see an email from us within a few minutes, a few things could have happened:
+                The email is in your spam folder. (Sometimes things get lost in there.)
+                The email address you entered had a mistake or typo. (Happens to the best of us.)
+                You accidentally gave us another email address. (Usually a work or personal one instead of the one you meant.)
+                We can’t deliver the email to this address. (Usually because of corporate firewalls or filtering.)
+                Re-enter your email and try again""";
         String actual = getText(driver, By.cssSelector("div[class='lastUnit size1of1']"));
         System.out.println(actual);
         assertEquals(expected, actual);
         driver.quit();
     }
 
-    @Then("I am shown a error")
-    public void iAmShownAError() {
-        String expected = "Please check your entry and try again.";
-        String actual = getText(driver, By.cssSelector("div[class='av-flash v-flashBlock--error padding--lv3 !padding-left-right--lv0']"));
+    @Then("I am shown username to long")
+    public void iAmShownUsernameToLong() {
+        String expected = "Enter a value less than 100 characters long";
+        String actual = getText(driver, By.cssSelector("span[class='invalid-error']"));
+        System.out.println(actual);
+        assertEquals(expected, actual);
+        driver.quit();
+    }
+
+    @Then("I am shown that username is in use")
+    public void iAmShownThatUsernameIsInUse() {
+        String expected = "Another user with this username already exists. Maybe it's your evil twin. Spooky.";
+        String actual = getText(driver, By.cssSelector("span[class='invalid-error']"));
+        System.out.println(actual);
+        assertEquals(expected, actual);
+        driver.quit();
+    }
+
+    @Then("I am shown email is required")
+    public void iAmShownEmailIsRequirede() {
+        String expected = "Please enter a value";
+        String actual = getText(driver, By.cssSelector("span[class='invalid-error']"));
         System.out.println(actual);
         assertEquals(expected, actual);
         driver.quit();
